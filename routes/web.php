@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\DashboardPostsController;
 use App\Http\Controllers\MainController;
 
 /*
@@ -29,4 +30,7 @@ Route::post('/register', [AuthController::class, 'registerProcess'])->middleware
 Route::post('/logout', [AuthController::class, 'logout']);
 
 // dashboard route
-Route::get('/dashboard', [DashboardController::class, 'index'])->middleware('auth');
+Route::get('/dashboard', function() {
+        return view('dashboard.index', ['title' => 'Dashboard']);
+    })->middleware('auth');
+Route::resource('/dashboard/posts', DashboardPostsController::class)->middleware('auth');
