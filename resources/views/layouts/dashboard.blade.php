@@ -9,6 +9,10 @@
     <link rel="stylesheet" href="/css/bootstrap.css">
     <link rel="stylesheet" href="/css/dashboard.css">
 
+    {{-- trix editor --}}
+    <link rel="stylesheet" href="/css/trix.css">
+    <script src="/js/trix.js"></script>
+
     {{-- style --}}
     <style>
         .bd-placeholder-img {
@@ -23,6 +27,10 @@
             .bd-placeholder-img-lg {
             font-size: 3.5rem;
             }
+        }
+
+        .trix-button-group--file-tools {
+            display: none !important;
         }
     </style>
 </head>

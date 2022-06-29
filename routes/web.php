@@ -33,4 +33,11 @@ Route::post('/logout', [AuthController::class, 'logout']);
 Route::get('/dashboard', function() {
         return view('dashboard.index', ['title' => 'Dashboard']);
     })->middleware('auth');
-Route::resource('/dashboard/posts', DashboardPostsController::class)->middleware('auth');
+// Route::resource('/dashboard/posts', DashboardPostsController::class)->middleware('auth');
+Route::get('/dashboard/posts', [DashboardPostsController::class, 'index'])->middleware('auth');
+Route::get('/dashboard/posts/create', [DashboardPostsController::class, 'create'])->middleware('auth');
+Route::post('/dashboard/posts/store', [DashboardPostsController::class, 'store'])->middleware('auth');
+Route::get('/dashboard/posts/show/{id}', [DashboardPostsController::class, 'show'])->middleware('auth');
+Route::get('/dashboard/posts/edit/{id}', [DashboardPostsController::class, 'edit'])->middleware('auth');
+Route::put('/dashboard/posts/update/{id}', [DashboardPostsController::class, 'update'])->middleware('auth');
+Route::delete('/dashboard/posts/destroy/{id}', [DashboardPostsController::class, 'destroy'])->middleware('auth');

@@ -22,7 +22,7 @@
             <h3>{{ $post->title }}</h3>
             <p class="fs-6">By. {{ $post->author->name }}</p>
             <hr>
-            <p class="text-justify">{{ Str::limit($post->body, 10, '...') }}</p>
+            <p class="text-justify">{{ Str::limit(strip_tags($post->body), 50, '...') }}</p>
             <a href="#" class="ms-auto">Read More</a>
         </div>
         @endforeach

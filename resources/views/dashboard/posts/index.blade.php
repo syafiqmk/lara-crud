@@ -18,8 +18,12 @@
                     <td>{{ $post->created_at }}</td>
                     <td>
                         <a href="/dashboard/posts/show/{{ $post->id }}" class="btn btn-success">Detail</a>
-                        <a href="/dashboard/posts/edit/{{ $post->id }}" class="btn btn-success">Edit</a>
-                        <a href="/dashboard/posts/destroy/{{ $post->id }}" class="btn btn-success">Delete</a>
+                        <a href="/dashboard/posts/edit/{{ $post->id }}" class="btn btn-warning">Edit</a>
+                        <form action="/dashboard/posts/destroy/{{ $post->id }}" method="post">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn btn-danger">Delete</button>
+                        </form>
                     </td>
                 </tr>
             @endforeach

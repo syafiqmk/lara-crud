@@ -41,7 +41,7 @@ class DashboardPostsController extends Controller
     public function store(Request $request)
     {
         $credentials = $request->validate([
-            'title' => 'required|min:3',
+            'title' => 'required|max:255',
             'body' => 'required'
         ]);
 
@@ -60,11 +60,13 @@ class DashboardPostsController extends Controller
      * @param  \App\Models\Posts  $posts
      * @return \Illuminate\Http\Response
      */
-    public function show(Posts $posts)
+    public function show($id)
     {
+        $post = Posts::where('id', $id)->first();
+
         return view('dashboard.posts.show', [
-            'title' => $posts->title,
-            'post' => $posts
+            'title' => $post->title,
+            'post' => $post
         ]);
     }
 
@@ -74,11 +76,13 @@ class DashboardPostsController extends Controller
      * @param  \App\Models\Posts  $posts
      * @return \Illuminate\Http\Response
      */
-    public function edit(Posts $posts)
+    public function edit($id)
     {
+        $post = Posts::where('id', $id)->first();
+
         return view('dashboard.posts.edit', [
-            'title' => 'Edit : '. $posts->title,
-            'post' => $posts
+            'title' => 'Edit : '. $post->title,
+            'post' => $post
         ]);
     }
 
@@ -89,17 +93,17 @@ class DashboardPostsController extends Controller
      * @param  \App\Models\Posts  $posts
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Posts $posts)
+    public function update(Request $request, $id)
     {
         $credentials = $request->validate([
-            'title' => 'required|min:3',
+            'title' => 'required|max:255',
             'body' => 'required'
         ]);
 
-        $post = $posts;
+        $post = Posts::where('id', $id)->first();
         $post->title = $credentials['title'];
         $post->body = $credentials['body'];
-        $post->user_id = auth()->user->id;
+        $post->user_id = auth()->user()->id;
         $post->save();
 
         return redirect('/dashboard/posts')->with('updatePostSuccess', 'Post Updated Successfully');
@@ -111,9 +115,9 @@ class DashboardPostsController extends Controller
      * @param  \App\Models\Posts  $posts
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Posts $posts)
+    public function destroy($id)
     {
-        $posts->delete();
+        Posts::where('id', $id)->delete();
         return redirect('/dashboard/posts')->with('deletePostSuccess', 'Post Deleted Successfully');
     }
 }
