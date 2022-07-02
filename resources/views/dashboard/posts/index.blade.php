@@ -1,7 +1,7 @@
 @extends('layouts.dashboard')
 
 @section('content')
-    <a href="/dashboard/posts/create" class="btn btn-primary mb-3">Create Post</a>
+    <a href="{{ route('posts.create') }}" class="btn btn-primary mb-3">Create Post</a>
 
     <table class="table">
         <thead>
@@ -17,9 +17,9 @@
                     <td>{{ $post->title }}</td>
                     <td>{{ $post->created_at }}</td>
                     <td>
-                        <a href="/dashboard/posts/show/{{ $post->id }}" class="btn btn-success">Detail</a>
-                        <a href="/dashboard/posts/edit/{{ $post->id }}" class="btn btn-warning">Edit</a>
-                        <form action="/dashboard/posts/destroy/{{ $post->id }}" method="post">
+                        <a href="{{ route('posts.show', $post->id) }}" class="btn btn-success">Detail</a>
+                        <a href="{{ route('posts.edit', $post->id) }}" class="btn btn-warning">Edit</a>
+                        <form action="{{ route('posts.destroy', $post->id) }}" method="post">
                             @csrf
                             @method('DELETE')
                             <button type="submit" class="btn btn-danger">Delete</button>

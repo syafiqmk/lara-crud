@@ -22,4 +22,9 @@ class Posts extends Model
                             ->orWhere('body', 'like', '%' . $search . '%');
         });
     }
+
+    public function getRouteKeyName()
+    {
+        return 'id';
+    }
 }

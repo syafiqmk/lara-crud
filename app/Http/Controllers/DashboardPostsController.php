@@ -63,7 +63,7 @@ class DashboardPostsController extends Controller
     public function show($id)
     {
         $post = Posts::where('id', $id)->first();
-
+        // dd($posts);
         return view('dashboard.posts.show', [
             'title' => $post->title,
             'post' => $post
@@ -79,7 +79,6 @@ class DashboardPostsController extends Controller
     public function edit($id)
     {
         $post = Posts::where('id', $id)->first();
-
         return view('dashboard.posts.edit', [
             'title' => 'Edit : '. $post->title,
             'post' => $post

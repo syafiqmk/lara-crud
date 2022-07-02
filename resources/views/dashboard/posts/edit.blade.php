@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="col-md-8">
-        <form action="/dashboard/posts/update/{{ $post->id }}" method="post" enctype="multipart/form-data">
+        <form action="{{ route('posts.update', $post->id) }}" method="post" enctype="multipart/form-data">
             @csrf
             @method('PUT')
             {{-- <input type="hidden" name="user_id" value="{{ auth()->user()->id }}"> --}}
