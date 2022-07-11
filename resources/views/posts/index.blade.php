@@ -20,7 +20,7 @@
         @foreach ($posts as $post)
         <div class="col-md-6 col-sm-12">
             <h3>{{ $post->title }}</h3>
-            <p class="fs-6">By. {{ $post->author->name }}</p>
+            <p class="fs-6">By. {{ $post->author->name }} | {{ $post->created_at->diffForHumans() }}</p>
             <hr>
             <p class="text-justify">{{ Str::limit(strip_tags($post->body), 50, '...') }}</p>
             <a href="/post/{{ $post->id }}" class="ms-auto">Read More</a>

@@ -46,7 +46,7 @@ class DashboardPostsController extends Controller
         ]);
 
         $post = new Posts;
-        $post->title = $credentials['title'];
+        $post->title = ucwords($credentials['title']);
         $post->body = $credentials['body'];
         $post->user_id = auth()->user()->id;
         $post->save();
@@ -100,7 +100,7 @@ class DashboardPostsController extends Controller
         ]);
 
         $post = Posts::where('id', $id)->first();
-        $post->title = $credentials['title'];
+        $post->title = ucwords($credentials['title']);
         $post->body = $credentials['body'];
         $post->user_id = auth()->user()->id;
         $post->save();
