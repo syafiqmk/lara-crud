@@ -16,4 +16,15 @@ class MainController extends Controller
             'posts' => Posts::latest()->search(request('search'))->paginate(10)->withQueryString()
         ]);
     }
+
+    public function show($id) {
+        // dd($id);
+        $post = Posts::where('id', $id)->first();
+        // dd($post->title);
+
+        return view('posts.show', [
+            'title' => $post->title,
+            'post' => $post
+        ]);
+    }
 }

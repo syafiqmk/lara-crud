@@ -18,7 +18,7 @@ use App\Http\Controllers\MainController;
 
 // main routes
 Route::get('/', [MainController::class, 'index']);
-
+Route::get('/post/{id}', [MainController::class, 'show']);
 // auth routes
 //login
 Route::get('/login', [AuthController::class, 'index'])->name('login')->middleware('guest');
